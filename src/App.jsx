@@ -3,17 +3,19 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import TaskForm from './TaskForm';
+import ProjectForm from './ProjectForm';
 
 import './App.css'
 
 function App() {
   const [showProjectForm, setShowProjectForm] = useState(false)
   const [projectName, setProjectName] = useState('');
-  const [projects, setProjects] = useState([]);
-  const [selectedProjectId, setSelectedProjectId] = useState('');
+  const [projects, setProjects] = useState([{ id: uuidv4(), name: "first project" }]);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
 
   const [showTaskForm, setShowTaskForm] = useState(false)
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);  
   const [taskData, setTaskData] = useState({
     title: '',
     description: '',
@@ -21,6 +23,7 @@ function App() {
     priority: 'none',
     projectId: '',
   });
+  
 
   function handleProjectForm() {
     setShowProjectForm(!showProjectForm)
@@ -28,7 +31,11 @@ function App() {
 
   function handleTaskForm() {
     if (projects.length === 0) {
-      alert("Please create or select project");
+      alert("Please create project");
+      return;
+    } 
+    if (!selectedProjectId) {
+      alert("Please select project");
       return;
     }
     setShowTaskForm(!showTaskForm)
@@ -47,11 +54,11 @@ function App() {
   }
 
   function handleAddTask() {
-    if (taskData.title && selectedProjectId) {
+    if (taskData.title) {
       const newTask = {
         ...taskData,
         id: uuidv4(),
-        projectId: selectedProjectId,
+        projectId: selectedProjectId,  // чтобы привязать задачи к конкретному проекту (присваиваем id проекта)
       };
       setTasks((task) => [...task, newTask])
       setTaskData({
@@ -67,7 +74,9 @@ function App() {
 
   function removeProject(id) {
     const updatedProjectList = projects.filter(project => project.id !== id)
+    const updatedTaskList = tasks.filter(task => task.projectId !== id); // также удаляем задачи удаленного проекта
     setProjects(updatedProjectList);
+    setTasks(updatedTaskList);
   }
 
   function removeTask(id) {
@@ -85,24 +94,18 @@ function App() {
         </div>
 
         {showProjectForm && (
-        <div className="project-form">
-          <h3>Enter project name</h3>
-          <input
-            type="text" 
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}/>
-          <div className='button-container'>
-            <button type="button" onClick={handleAddClick}>Add</button>
-            <button type="button" onClick={handleProjectForm}>Cancel</button>          
-          </div>
-        </div>
+          <ProjectForm projectName={projectName} setProjectName={setProjectName} 
+          handleAddClick={handleAddClick} handleProjectForm={handleProjectForm} />
         )}
  
         {projects.length > 0 && (
             <ul>
               {projects.map((project) => (
                   <li key={project.id}
-                  onClick={() => setSelectedProjectId(project.id)}>
+                  onClick={() => setSelectedProjectId(project.id)}
+                  style={{ 
+                    fontWeight: project.id === selectedProjectId ? "700" : "400",
+                    color: project.id === selectedProjectId ? "rgb(227, 61, 61)" : "grey" }}>
                     {project.name}
                   <button className="trash-btn" style={{ marginLeft: '20px' }} onClick={() => removeProject(project.id)}>    
                   <FontAwesomeIcon icon={faTrash} /></button>
@@ -121,44 +124,8 @@ function App() {
         </div>
 
       {showTaskForm && (
-        <div className='task-form'>
-          <button className='close-task-form-btn' onClick={handleTaskForm}>x</button>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input 
-              type="text" 
-              name="title" 
-              id="title" 
-              value={taskData.title}
-              onChange={(e) => setTaskData({...taskData, title: e.target.value})}
-              style={{marginLeft: "10px"}}/>            
-          </div>
-          <textarea 
-            name="description" 
-            id="description" 
-            maxLength={300} 
-            rows={5} 
-            cols={32}
-            value={taskData.description}
-            onChange={(e) => setTaskData({...taskData, description: e.target.value})}></textarea>
-          <div className='task-form-row'>
-            <input 
-              type="date"
-              value={taskData.date}
-              onChange={(e) => setTaskData({...taskData, date: e.target.value})}/>
-            <select 
-              name="priority" 
-              id="priority"
-              value={taskData.priority}
-              onChange={(e) => setTaskData({...taskData, priority: e.target.value})}>
-              <option value="none">None</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-          </div>
-          <button className='task-form-btn' onClick={handleAddTask}>Add</button>
-        </div>
+        <TaskForm taskData={taskData} setTaskData={setTaskData} 
+        handleAddTask={handleAddTask} handleTaskForm={handleTaskForm}/>
       )}
 
         {tasks
@@ -176,12 +143,9 @@ function App() {
                 <FontAwesomeIcon icon={faTrash} style={{color: "#ffffff",}} /></button>   
               </div>
            </div>
-       
           ))
         }   
-
       </div>
-
     </div>
   )
 }
