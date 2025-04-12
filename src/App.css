@@ -252,3 +252,15 @@ label {
 .task-form-btn:hover {
   transform: scale(1.07);
 }
+
+@media (max-width: 500px) {
+  .project-form {
+    left: 10%;
+  }
+  .task-form {
+    left: 10%;
+  }
+  .task-card {
+    width: 350px;
+  }
+}
