@@ -3,8 +3,8 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import TaskForm from "./TaskForm";
-import ProjectForm from "./ProjectForm";
+import TaskForm from "./components/TaskForm";
+import ProjectForm from "./components/ProjectForm";
 
 import "./App.css";
 
