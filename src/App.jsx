@@ -127,6 +127,7 @@ function App() {
                   className="trash-btn"
                   style={{ marginLeft: "20px" }}
                   onClick={() => removeProject(project.id)}
+                  disabled={showProjectForm || showTaskForm}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>

@@ -9,15 +9,17 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-image: url(./assets/14731345_rm222-mind-20.jpg);
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .main-container {
   display: flex;
-  gap: 120px;
+  gap: 5vw;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 100px;
+  margin: 5vw;
+  flex-wrap: wrap;
 }
 
 h2 {
@@ -67,7 +69,6 @@ h2 {
   left: 35%;
   width: 300px;
   height: 150px;
-  background-color: rgb(182, 227, 241);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -125,6 +126,7 @@ li {
   margin-bottom: 10px;
   padding: 5px 10px;
   border-radius: 5px;
+  max-width: 150px;
 }
 
 li:hover {
@@ -140,7 +142,6 @@ p {
   top: 10%;
   left: 35%;
   width: 300px;
-  background-color: rgb(182, 227, 241);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -153,7 +154,6 @@ p {
 }
 
 .task-card {
-  background-color: rgb(187, 214, 238);
   box-sizing: border-box;
   padding: 20px;
   border-radius: 10px;
