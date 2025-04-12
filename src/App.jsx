@@ -21,7 +21,7 @@ function App() {
     description: '',
     date: '',
     priority: 'none',
-    projectId: '',
+    projectId: null,
   });
   
 
@@ -66,7 +66,7 @@ function App() {
         description: '',
         date: '',
         priority: 'none',
-        projectId: '',
+        projectId: null,
       })
       setShowTaskForm(false);
     }
@@ -74,10 +74,10 @@ function App() {
 
   function removeProject(id) {
     const updatedProjectList = projects.filter(project => project.id !== id)
-    const updatedTaskList = tasks.filter(task => task.projectId !== id); // также удаляем задачи удаленного проекта
+    const updatedTaskList = tasks.filter(task => task.projectId !== id); // удаляем задачи удаленного проекта
     setProjects(updatedProjectList);
     setTasks(updatedTaskList);
-    if (String(selectedProjectId) == String(id)) {
+    if (selectedProjectId == id) {
       setSelectedProjectId(null);
     }
   }
@@ -126,7 +126,7 @@ function App() {
           <p style={{ fontSize: "1.1rem"}}>Add task</p>
         </div>
 
-      {showTaskForm && (
+      {showTaskForm && selectedProjectId && (
         <TaskForm taskData={taskData} setTaskData={setTaskData} 
         handleAddTask={handleAddTask} handleTaskForm={handleTaskForm}/>
       )}
