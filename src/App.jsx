@@ -15,7 +15,6 @@ function App() {
   const [showTaskForm, setShowTaskForm] = useState(false)
   const [tasks, setTasks] = useState([]);
   const [taskData, setTaskData] = useState({
-    id: uuidv4(),
     title: '',
     description: '',
     date: '',
@@ -56,7 +55,6 @@ function App() {
       };
       setTasks((task) => [...task, newTask])
       setTaskData({
-        id: uuidv4(),
         title: '',
         description: '',
         date: '',
@@ -68,7 +66,7 @@ function App() {
   }
 
   function removeProject(id) {
-    const updatedProjectList = projects.filter((project) => project.id !== id)
+    const updatedProjectList = projects.filter(project => project.id !== id)
     setProjects(updatedProjectList);
   }
 
