@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Baloo+Bhaina+2:wght@400..800&family=Bungee+Spice&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Codystar:wght@300;400&family=Doto:wght@100..900&family=Eater&family=Fugaz+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Tilt+Warp&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Vidaloka&display=swap');
 
 body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -7,6 +8,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-image: url(./assets/14731345_rm222-mind-20.jpg);
+  background-size: 100%;
 }
 
 .main-container {
@@ -19,6 +22,7 @@ body {
 
 h2 {
   font-size: 1.8rem;
+  font-family: Nunito, sans-serif;
 }
 
 .project-container {
@@ -39,7 +43,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(127, 210, 233);
+  background-color: rgb(159, 215, 248);
   cursor: pointer;
   border: 1px solid transparent;
   font-weight: 600;
@@ -50,7 +54,13 @@ h2 {
   height: 25px;
   width: 25px;
   flex-shrink: 1;
-  vertical-align:middle;
+  vertical-align: middle;
+  transition: all 0.2s linear;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.05);
 }
 
 .project-form {
@@ -67,6 +77,10 @@ h2 {
   align-items: center;
   border-radius: 10px;
   gap: 15px;
+  background-image: url(./assets/4227754_10016.jpg);
+  background-size: 150%;
+  background-image: url(./assets/72833199_uplagi.jpg);
+  background-size: 250%;
 }
 
 .project-form input {
@@ -86,13 +100,18 @@ h2 {
 .button-container button {
   width: 100px;
   padding: 5px 0px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   background-color: rgb(227, 121, 181);
   color: white;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
+  border: 2px solid rgb(255, 251, 253)
+}
+
+.button-container button:hover {
+  filter: brightness(1.07);
 }
 
 h3 {
@@ -100,6 +119,8 @@ h3 {
   font-weight: 500;
   margin: 0;
   margin-top: 5px;
+  color: rgb(236, 222, 230);;
+  font-family: Nunito, sans-serif;
 }
 
 li {
@@ -111,7 +132,7 @@ li {
 }
 
 li:hover {
-  background-color: rgba(227, 121, 181, 0.803);
+  background-color: rgba(209, 240, 255, 0.803);
 }
 
 p {
@@ -131,6 +152,8 @@ p {
   align-items:center;
   border-radius: 10px;
   gap: 15px;
+  background-image: url(./assets/72833199_uplagi.jpg);
+  background-size: 250%;
 }
 
 .task-card {
@@ -138,23 +161,18 @@ p {
   box-sizing: border-box;
   padding: 20px;
   border-radius: 10px;
-  /* display: flex;
-  justify-content: space-between; */
   width: 400px;
   align-items: center;
   margin-top: 10px;
-  
+  /* background-image: url(./assets/1765628_7440.jpg); */
+  background-image: url(./assets/194044788_beabe388-0d6c-4936-b1f9-3f97d6218a41.jpg);
+  background-size: 170%;
+  background-position: 40% 70%;
 }
 
 .task-card p {
   display: block;
 }
-
-/* .task-card div {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-} */
 
 .task-card__description {
   width: 200px;
@@ -176,7 +194,12 @@ p {
   background-color: transparent;
   margin-left: auto;
   align-self: self-start;
+  transition: all 0.2s linear;
   /* margin-top: 5px; */
+}
+
+.trash-btn:hover {
+  transform: scale(1.13);
 }
 
 .close-task-form-btn {
@@ -187,7 +210,13 @@ p {
   margin-left: auto;
   margin-right: 10px;
   cursor: pointer;
-  color: rgb(146, 146, 146);
+  color: rgb(227, 121, 181);
+  transition: all 0.2s linear;
+}
+
+.close-task-form-btn:hover {
+  filter: brightness(1.2);
+  transform: scale(1.2);
 }
 
 .task-form input,
@@ -200,7 +229,10 @@ select {
 
 label {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  color: rgb(236, 222, 230);;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 1px;
 }
 
 .task-form-row {
@@ -220,4 +252,9 @@ label {
   border: 3px solid rgb(227, 121, 181);
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.task-form-btn:hover {
+  transform: scale(1.07);
 }

@@ -77,6 +77,9 @@ function App() {
     const updatedTaskList = tasks.filter(task => task.projectId !== id); // также удаляем задачи удаленного проекта
     setProjects(updatedProjectList);
     setTasks(updatedTaskList);
+    if (String(selectedProjectId) == String(id)) {
+      setSelectedProjectId(null);
+    }
   }
 
   function removeTask(id) {
@@ -105,7 +108,7 @@ function App() {
                   onClick={() => setSelectedProjectId(project.id)}
                   style={{ 
                     fontWeight: project.id === selectedProjectId ? "700" : "400",
-                    color: project.id === selectedProjectId ? "rgb(227, 61, 61)" : "grey" }}>
+                    color: project.id === selectedProjectId ? "rgb(227, 121, 181)" : "grey" }}>
                     {project.name}
                   <button className="trash-btn" style={{ marginLeft: '20px' }} onClick={() => removeProject(project.id)}>    
                   <FontAwesomeIcon icon={faTrash} /></button>
@@ -132,10 +135,10 @@ function App() {
           .filter((task) => task.projectId === selectedProjectId)
           .map((task) => (
             <div className="task-card" key={task.id}>
-              <p style={{marginBottom: "10px"}}><strong>{task.title}</strong></p>
+              <p style={{marginBottom: "10px", color: "white"}}><strong>{task.title}</strong></p>
               <div style={{ display: "flex"}}>
                 <p className='task-card__description'>{task.description}</p>                
-                <div style={{ marginLeft: "30px", display: "flex", flexDirection: "column" }}>
+                <div style={{ marginLeft: "30px", display: "flex", flexDirection: "column", color: "white" }}>
                   <p>{task.date}</p>
                   <p className='task-card__priority'>{task.priority}</p>
                 </div>
